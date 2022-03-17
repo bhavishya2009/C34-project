@@ -1,5 +1,5 @@
 class Arrow {
-  constructor(x, y,w,h) {
+  constructor(x, y, w, h) {
     var options = {
       isStatic: true
     };
@@ -8,9 +8,9 @@ class Arrow {
     this.speed = 0.05;
     this.body = Bodies.rectangle(x, y, this.w, this.h, options);
     this.array = ["./assets/knife_arrow.png","./assets/poison_arrow.png","./assets/bolt_arrow.png","./assets/smoke_arrow.png"]
-    var num = Math.round(random(0,3));
+    this.num = Math.round(random(0,3));
     //console.log("#####################"+num);
-    this.image = loadImage(this.array[num]);
+    this.image = loadImage(this.array[this.num]);
     this.animation = [this.image];
     World.add(world, this.body);
   }
@@ -55,4 +55,38 @@ class Arrow {
       var position = [pos.x, pos.y];
     }
   }
+
+  /*delete(type, index){
+    if(type == 1 && this.num == 0){
+      Matter.Body.setVelocity(this.body, { x: 0, y: 0 });
+
+      this.speed = 0.05;
+      Matter.World.remove(world, this.body);
+      delete arrows[index];
+    }
+
+    else if(type == 2 && this.num == 1){
+      Matter.Body.setVelocity(this.body, { x: 0, y: 0 });
+
+      this.speed = 0.05;
+      Matter.World.remove(world, this.body);
+      delete arrows[index];
+    }
+
+    else if(type == 3 && this.num == 2){
+      Matter.Body.setVelocity(this.body, { x: 0, y: 0 });
+
+      this.speed = 0.05;
+      Matter.World.remove(world, this.body);
+      delete arrows[index];
+    }
+
+    else if(type == 4 && this.num == 3){
+      Matter.Body.setVelocity(this.body, { x: 0, y: 0 });
+
+      this.speed = 0.05;
+      Matter.World.remove(world, this.body);
+      delete arrows[index];
+    }
+  }*/
 }

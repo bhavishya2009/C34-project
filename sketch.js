@@ -15,6 +15,8 @@ var arrows = [];
 var btn1Img, btn2Img, btn3Img, btn4Img;
 var object, onTop;
 
+var i;
+
 
 function preload() {
   backgroundImg = loadImage("./assets/background.jpg");
@@ -80,38 +82,46 @@ function draw() {
   translate(btn1.position.x, btn1.position.y);
   imageMode(CENTER);
   image(btn1Img, 0, 0, 80, 70);
+  //btn1.mouseClicked(deleteArrow("knife",i))  
   pop();
 
   push();
   translate(btn2.position.x, btn2.position.y);
   imageMode(CENTER);
   image(btn2Img, 0, 0, 80, 70);
+  //btn2.mouseClicked(deleteArrow("bolt",i))
   pop();
 
   push();
   translate(btn3.position.x, btn3.position.y);
   imageMode(CENTER);
   image(btn3Img, 0, 0, 80, 70);
+  //btn3.mouseClicked(deleteArrow("smoke",i))
   pop();
 
   push();
   translate(btn4.position.x, btn4.position.y);
   imageMode(CENTER);
   image(btn4Img, 0, 0, 80, 70);
+  //btn4.mouseClicked(deleteArrow("poison",i))
   pop();
 
   showBow();
+
   if (frameCount % 70 == 0) {
-    var cannonarrow = new Arrow(100, 500, 100, 50);
-    cannonarrow.trajectory = [];
-    Matter.Body.setAngle(cannonarrow.body, bow.angle);
-    arrows.push(cannonarrow);
+    var arrow = new Arrow(100, 500, 100, 50);
+    arrow.trajectory = [];
+    Matter.Body.setAngle(arrow.body, bow.angle);
+    arrows.push(arrow);
   }
 
   console.log("arrows length" + arrows.length);
-  for (var i = 0; i < arrows.length; i++) {
+  for (i = 0; i < arrows.length; i++) {
     showArrows(arrows[i], i);
-    //CollisionWithDog(i);
+    
+    //if (arrows.length > 0){
+      //CollisionWithDog(i);
+    //}
   }
 }
 function showBow() {
@@ -131,4 +141,38 @@ function showArrows(arrow, index) {
   }
 }
 
-//function CollisionWithDog(){}
+function deleteArrow(image, index){
+  arrows[index].remove(index);
+  /*if(image == "knife"){
+    //arrows[index].delete(1,index);
+    Matter.World.remove(world,arrows[index]);
+  }
+  else if(image == "poison"){
+    //arrows[index].delete(2,iindex);
+    Matter.World.remove(world,arrows[index]);
+  }
+  else if(image == "bolt"){
+    //arrows[index].delete(3,index);
+    Matter.World.remove(world,arrows[index]);
+  }
+  else if(image == "smoke"){
+    //arrows[index].delete(4,index);
+    Matter.World.remove(world,arrows[index]);
+  }*/
+}
+
+/*function CollisionWithDog(i){
+  for (var i = 0; i < arrows.length; i++) {
+    console.log(dog.x+" "+arrows[i].x);
+    if (dog !== undefined && arrows[i] !== undefined) {
+      var collision = Matter.SAT.collides(dog.body, arrows[i].body);
+      console.log(dog.position);
+      if (collision.collided) {
+          arrows.remove(index);
+        
+        Matter.World.remove(world, dog.body);
+        delete dog;
+      }
+    }
+  }
+}*/

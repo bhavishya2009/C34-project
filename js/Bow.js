@@ -1,6 +1,6 @@
 class Bow {
     constructor(x, y, width, height, bowPos, bowAnimation) {
-        
+        bowAnimation.speed = 0.5;
         this.animation = bowAnimation;
         this.speed = 0.05;
         this.body = Bodies.rectangle(x,y,width,height);
@@ -14,7 +14,7 @@ class Bow {
     }
 
     animate() {
-        this.speed += 0.05;
+        this.speed = 0.05;
     }
 
     display() {
